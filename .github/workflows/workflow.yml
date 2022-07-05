@@ -1,15 +1,16 @@
 name: deploy-postgres
 
 on: 
-  push:
-    branches: 
-      - main
-    paths: 
-      - 'deploy/**'
+#  push:
+#    branches: 
+#      - main
+#    paths: 
+#      - 'deploy/**'
+workflow_dispatch:
 
 env:
     AZURE_RESOURCEGROUP_NAME: AzureDev
-    ENVIRONMENT: nonprod
+    SERVERNAME: 
 
 jobs:
   deploy:
@@ -26,4 +27,5 @@ jobs:
           template: ./deploy/main.bicep
           parameters: 
             administratorLogin=${{ secrets.POSTGRES_ADMIN }}
-            administratorLoginPassword=${{ secrets.POSTGRES_ADMIN_PASSWD }}              
+            administratorLoginPassword=${{ secrets.POSTGRES_ADMIN_PASSWD }}  
+            serverName=${{ env.SERVERNAME }}            

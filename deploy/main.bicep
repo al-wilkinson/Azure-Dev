@@ -56,8 +56,6 @@ param virtualNetworkName string = 'azure_postgresql_vnet'
 @description('Subnet Name')
 param subnetName string = 'azure_postgresql_subnet'
 
-param subnetId string = 'subnet'
-
 @description('Virtual Network RuleName')
 param virtualNetworkRuleName string = 'AllowSubnet'
 
@@ -96,7 +94,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
     }
     subnets: [
       {
-        id: subnetId
+        id: 'subnet'
         name: subnetName
         properties: {
           addressPrefix: subnetPrefix

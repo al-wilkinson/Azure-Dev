@@ -29,3 +29,12 @@ resource privateEndpoint 'Microsoft.Network/privateEndpoints@2021-05-01' = {
   ]
 }
 
+
+resource subnet 'Microsoft.Network/virtualNetworks/subnets@2021-05-01' = {
+  parent: vnet
+  name: subnetName
+  properties: {
+    addressPrefix: subnetPrefix
+  }
+}
+

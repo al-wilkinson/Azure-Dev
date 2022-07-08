@@ -92,16 +92,18 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
         vnetAddressPrefix
       ]
     }
+    subnets: [
+      {
+        name: subnetName
+        properties: {
+          addressPrefix: subnetPrefix
+        }
+      }
+    ]
   }
 }
 
-resource subnet 'Microsoft.Network/virtualNetworks/subnets@2021-05-01' = {
-  parent: vnet
-  name: subnetName
-  properties: {
-    addressPrefix: subnetPrefix
-  }
-}
+
 
 resource server 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
   name: serverName
@@ -167,11 +169,4 @@ resource privateEndpoint 'Microsoft.Network/privateEndpoints@2021-05-01' = {
   ]
 }
 
-resource privateDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = {
-  name: privateDnsZoneName
-  location: 'global'
-  properties: {}
-  dependsOn: [
-    vnet
-  ]
-}
+

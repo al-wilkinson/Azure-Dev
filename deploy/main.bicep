@@ -66,8 +66,6 @@ param vnetAddressPrefix string = '10.0.0.0/16'
 param subnetPrefix string = '10.0.0.0/16'
 
 
-@description('Location for all resources.')
-param location string = resourceGroup().location
 
 var privateEndpointName = 'myPrivateEndpoint'
 

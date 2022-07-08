@@ -155,7 +155,7 @@ resource privateEndpoint 'Microsoft.Network/privateEndpoints@2021-05-01' = {
         properties: {
           privateLinkServiceId: server.id
           groupIds: [
-            'server'
+            'postgresqlServer'
           ]
         }
       }

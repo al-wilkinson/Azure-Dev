@@ -68,6 +68,7 @@ param subnetPrefix string = '10.0.0.0/16'
 
 
 var privateEndpointName = 'myPrivateEndpoint'
+var privateDnsZoneName = 'privatelink01'
 
 var firewallrules = [
   {
@@ -166,3 +167,11 @@ resource privateEndpoint 'Microsoft.Network/privateEndpoints@2021-05-01' = {
   ]
 }
 
+resource privateDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = {
+  name: privateDnsZoneName
+  location: 'global'
+  properties: {}
+  dependsOn: [
+    vnet
+  ]
+}

@@ -29,6 +29,7 @@ resource privateEndpoint 'Microsoft.Network/privateEndpoints@2021-05-01' = {
   ]
 }
 
+var privateDnsZoneName = 'privatelink01'
 
 resource subnet 'Microsoft.Network/virtualNetworks/subnets@2021-05-01' = {
   parent: vnet

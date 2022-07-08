@@ -56,6 +56,8 @@ param virtualNetworkName string = 'azure_postgresql_vnet'
 @description('Subnet Name')
 param subnetName string = 'azure_postgresql_subnet'
 
+param subnetId string = 'subnet'
+
 @description('Virtual Network RuleName')
 param virtualNetworkRuleName string = 'AllowSubnet'
 
@@ -68,7 +70,7 @@ param subnetPrefix string = '10.0.0.0/16'
 
 
 var privateEndpointName = 'myPrivateEndpoint'
-var privateDnsZoneName = 'privatelink01'
+
 
 var firewallrules = [
   {
@@ -94,6 +96,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
     }
     subnets: [
       {
+        id: subnetId
         name: subnetName
         properties: {
           addressPrefix: subnetPrefix

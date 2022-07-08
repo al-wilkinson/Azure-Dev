@@ -7,3 +7,5 @@ RGID=$(az group show --name AzureDev --output tsv --query 'id')
 az ad sp create-for-rbac --name githubSP --role contributor --scopes $RGID --sdk-auth
 
 # az group delete --name AzureDev
+# az ad sp list --all --query "[].{displayName:displayName, id:id}" --output tsv
+# az role assignment create --assignee $SPID --role Contributor --scope $RGID

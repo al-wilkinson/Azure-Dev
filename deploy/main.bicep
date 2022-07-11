@@ -94,7 +94,6 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
     }
     subnets: [
       {
-        id: 'subnet'
         name: subnetName
         properties: {
           addressPrefix: subnetPrefix
@@ -131,7 +130,7 @@ resource server 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
   resource virtualNetworkRule 'virtualNetworkRules@2017-12-01' = {
     name: virtualNetworkRuleName
     properties: {
-      virtualNetworkSubnetId: subnet.id
+      virtualNetworkSubnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', vnet.name, subnetName)
       ignoreMissingVnetServiceEndpoint: true
     }
   }
@@ -151,7 +150,7 @@ resource privateEndpoint 'Microsoft.Network/privateEndpoints@2021-05-01' = {
   location: location
   properties: {
     subnet: {
-      id: subnet.id
+      id: resourceId('Microsoft.Network/virtualNetworks/subnets', vnet.name, subnetName)
     }
     privateLinkServiceConnections: [
       {

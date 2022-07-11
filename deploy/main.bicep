@@ -164,9 +164,6 @@ resource privateEndpoint 'Microsoft.Network/privateEndpoints@2021-05-01' = {
       }
     ]
   }
-  dependsOn: [
-    vnet
-  ]
 }
 
 

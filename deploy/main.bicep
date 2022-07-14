@@ -120,6 +120,7 @@ resource server 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
   properties: {
     createMode: 'Default'
     version: postgresqlVersion
+    publicNetworkAccess: 'Disabled'
     administratorLogin: administratorLogin
     administratorLoginPassword: administratorLoginPassword
     storageProfile: {

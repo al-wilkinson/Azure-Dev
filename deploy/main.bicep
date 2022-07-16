@@ -27,7 +27,6 @@ param version string = '13'
 
 param virtualNetworkName string = 'azure_postgresql_vnet'
 param subnetName string = 'azure_postgresql_subnet'
-param privateDnsZoneArmResourceId string = ''
 
 var privateDNSZoneName = '${serverName}.private.postgres.database.azure.com'
 
@@ -79,7 +78,7 @@ resource serverName_resource 'Microsoft.DBforPostgreSQL/flexibleServers@2021-06-
     administratorLoginPassword: administratorLoginPassword
     network: {
       delegatedSubnetResourceId: (empty(virtualNetworkName) ? json('null') : json('${virtualNetworkName}/subnets/${subnetName}'))
-      privateDnsZoneArmResourceId: (empty(virtualNetworkName) ? json('null') : privateDnsZoneArmResourceId)
+      privateDnsZoneArmResourceId: (empty(virtualNetworkName) ? json('null') : privateDNSZone.id)
     }
     highAvailability: {
       mode: haMode

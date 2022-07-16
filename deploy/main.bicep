@@ -82,6 +82,9 @@ resource privateDNSZoneLink 'Microsoft.Network/privateDnsZones/virtualNetworkLin
 resource serverName_resource 'Microsoft.DBforPostgreSQL/flexibleServers@2021-06-01' = {
   name: serverName
   location: location
+  dependsOn: [
+    privateDNSZoneLink
+  ]
   sku: {
     name: dbInstanceType
     tier: serverEdition

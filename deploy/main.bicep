@@ -29,6 +29,7 @@ param virtualNetworkName string = 'azure_postgresql_vnet'
 param subnetName string = 'azure_postgresql_subnet'
 
 var privateDNSZoneName = '${serverName}.private.postgres.database.azure.com'
+var privateDNSZoneLinkName = '${serverName}privatelink'
 
 
 resource virtualNetwork 'Microsoft.Network/virtualNetworks@2021-08-01' = {  name: virtualNetworkName
@@ -62,6 +63,19 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2021-08-01' = {  name
 resource privateDNSZone 'Microsoft.Network/privateDnsZones@2020-06-01' = {
   name: privateDNSZoneName
   location: 'global'
+}
+
+
+resource privateDNSZoneLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
+  parent: privateDNSZone
+  name: privateDNSZoneLinkName
+  location: 'global'
+  properties: {
+    registrationEnabled: true
+    virtualNetwork: {
+      id: virtualNetwork.id
+    }
+  }
 }
 
 

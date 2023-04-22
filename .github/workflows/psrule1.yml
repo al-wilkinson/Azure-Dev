@@ -19,3 +19,4 @@ jobs:
         inputPath: /deploy/
       env:
         PSRULE_INPUT_IGNOREUNCHANGEDPATH: true
+        PSRULE_CONFIGURATION_AZURE_BICEP_FILE_EXPANSION: true

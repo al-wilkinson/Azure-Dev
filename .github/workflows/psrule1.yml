@@ -14,12 +14,8 @@ jobs:
     # Analyze Azure resources using PSRule for Azure
     - name: Analyze Azure template files
       uses: microsoft/ps-rule@v2.7.0
-      input:
-        pathIgnore:
-        # Exclude files with these extensions
-        - '*.sh'
-        - '*.yml'
       with:
         modules: 'PSRule.Rules.Azure'
+        inputPath: /deploy/
       env:
         PSRULE_INPUT_IGNOREUNCHANGEDPATH: true

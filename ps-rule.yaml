@@ -1,3 +1,0 @@
-# YAML: Enable expansion for Bicep source files.
-configuration:
-  AZURE_BICEP_FILE_EXPANSION: true

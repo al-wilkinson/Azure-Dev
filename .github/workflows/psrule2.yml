@@ -32,3 +32,6 @@ jobs:
       uses: microsoft/ps-rule@v2.7.0
       with:
         modules: 'PSRules.Rules.Azure'
+        inputPath: /deploy/
+      env:
+        PSRULE_INPUT_IGNOREUNCHANGEDPATH: true

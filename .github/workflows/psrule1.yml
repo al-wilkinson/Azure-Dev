@@ -10,6 +10,8 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Check bicep version from shell
+      run: az bicep version
 
     # Analyze Azure resources using PSRule for Azure
     - name: Analyze Azure template files
